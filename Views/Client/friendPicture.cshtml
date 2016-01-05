@@ -4,7 +4,11 @@
 
 @using ClickInFinal.Models
 @model IEnumerable<imageBo>
-
+@{ User name = (User)Session["user"];
+   var owner = name.userId;
+   
+   
+   }
 <body style="background: repeat; background-image: url(/Content/img6.jpg)">
     <div class="col-lg-8">
         <div style="position: relative; top: 0">
@@ -52,8 +56,8 @@
             <div class="col-lg-6 " style="background-color: white">
                 <div style="padding-top: 2%">
                     <img src="~/Content/images/@b.ImgPath" height="50" width="50" class="img-circle"/>
-                    <a href="#" class="">@b.Fname @b.Lname</a>
-                    <input type="button" value="Report"  class="btn btn-danger hvr-bounce-in pull-right" onclick="reportPicture(@b.Id)"/>
+                    <a href="friendPicture?name=@b.User" class="">@b.Fname @b.Lname</a>
+                    <input type="button" value="Report"  class="btn btn-danger hvr-bounce-in pull-right" onclick="reportPicture(@b.Id)" name="rep_@b.Id"/>
                 </div>
                 
                     <img src="~/Content/images/@b.ImageName" height="300"  style="padding-top:2%;max-width:95%;padding-top:2%" data-toggle="modal" data-target="#@b.Id"/>
@@ -67,11 +71,11 @@
 
                             @if (b.YouLike.Equals(false))
                             {           
-                                <input type="button" id="btn_@b.Id" value="Like"  class="btn btn-primary" onclick="like(@b.Id)"/>
+                                <input type="button" id="btn_@b.Id" value="Like"  class="btn btn-primary" onclick="like(@b.Id)" name="like_@b.Id"/>
                             }
                             @{
                            
-                                <input type="button" value="Share"  class="btn btn-success" onclick="share(@b.Id)"/> 
+                                <input type="button" value="Share"  class="btn btn-success" onclick="share(@b.Id)" name="share_@b.Id"/> 
                            
                             }
                         </div>
@@ -81,16 +85,23 @@
                             <div id="cmnt_@b.Id">
                                 @foreach (Comment c in b.CoomentLi)
                                 {
+                                    <div id="ct_@c.CmntId">
                                     <img src="~/Content/images/@c.PicPath" height="50" width="50" class="img-circle"  />
                                     <a href="#">@c.Fname @c.Lname</a>
-                                    <p style="color: black">@c.Comment1</p>
+                                    <p style="color: black"><p style="color: black"> @c.Comment1 
+                                        @if(owner.Equals(c.Username)||owner.Equals(b.User))
+                                        {
+                                        <input type="button" onclick="deletePictureComment(@c.CmntId)" value="X" class="btn-danger" name="del_@c.CmntId">
+                                        }
+                                                            </p>
                                     <br /> 
+                                        </div>
                                 }
 
 
                             </div>
                             <input type="text" id="txt_@b.Id" placeholder=" Comment on picture" style="border:solid;height:50px;width:300px"/>
-                            <input type="button" value="Comment"  class="btn btn-primary" onclick="comment(@b.Id)"/>
+                            <input type="button" value="Comment"  class="btn btn-primary" onclick="comment(@b.Id)" name="cmnt_@b.Id"/>
                             <br />
                             <br />
                         </div>

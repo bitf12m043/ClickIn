@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+@using ClickInFinal.Models
+@model IEnumerable<User>
+
+
+<body>
+     @{
+            var count = 0;
+            foreach (User u in Model)
+            { 
+            <br />
+            <div class="col-lg-3" id="div_@count"></div>
+            <div class="col-lg-7 navbar-default" id="div1_@count" style="border:solid">
+                <br />
+                <img src="~/Content/images/@u.profile" alt="Picture no available" height="150" width="150"/>
+                <p style="color: black"><a href="friendPicture?name=@u.userId">@u.fname @u.lname</a></p>
+                @{
+                 
+                    <input type="button" value="Send Request" class=" btn btn-success pull-right" onClick="friendRequest('@u.userId    ',@count)" name="search"/>
+                    <br /> 
+                    <br />
+                count++;
+                }
+
+
+            </div>
+            <br />
+            <br />
+            <br />
+            }
+        }
+
+</body>

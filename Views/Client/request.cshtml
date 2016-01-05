@@ -18,8 +18,8 @@
                 <p style="color: black"><a href="friendPicture?name=@u.userId">@u.fname @u.lname</a></p>
                 @{                
                  
-                    <input type="button" value="Decline" class="btn btn-danger  hvr-bounce-in" onClick="deleteRequest('@u.userId    ',@count)"/>
-                    <input type="button" value="Accept" class="btn btn-success pull-right hvr-bounce-in" onClick="acceptRequest('@u.userId    ',@count)"/>
+                    <input type="button" value="Decline" name="dec_@count" class="btn btn-danger  hvr-bounce-in" onClick="deleteRequest('@u.userId    ',@count)"/>
+                    <input type="button" value="Accept" name="acc_@count" class="btn btn-success pull-right hvr-bounce-in" onClick="acceptRequest('@u.userId    ',@count)"/>
                     <br /> 
                     <br />
                 count++;

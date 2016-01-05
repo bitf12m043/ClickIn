@@ -16,10 +16,10 @@
             <div id="ct_@c.CmntId">
             <img src="~/Content/images/@c.PicPath" height="50" width="50" class="img-circle"  />
                        <a href="friendPicture?name=@c.Username" >@c.Fname @c.Lname</a>
-                       <p style="color:black"> @c.Comment1 
-                           @if(owner.Equals(c.Username) || owner.Equals(c.Owner))
+                       <p style="color:black">  @c.Comment1 
+                           @if(owner.Equals(c.Owner)||owner.Equals(c.Username))
                            {
-                           <input type="button" onclick="deletePictureComment(@c.CmntId)" value="X" class="btn-danger" name="com_@c.CmntId">
+                           <input type="button" onclick="deletePostComment(@c.CmntId)" value="X" class="btn-danger" name="com_@c.CmntId">
                            }
                        </p>
                                       <br /> 
