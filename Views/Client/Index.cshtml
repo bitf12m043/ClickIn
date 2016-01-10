@@ -87,7 +87,7 @@
                  
             <br />
              <br />
-                 
+                 <button name = "dbtn" onclick="myFunction()">Try it</button>
                @Html.TextBoxFor(m => m.userId, new {@class="btn",style="border:solid;color:darkblue",type="email",id="uId"})
                  @Html.ValidationMessageFor(m=>m.userId)
                  
@@ -141,6 +141,11 @@
 
      <script src="~/Scripts/jquery-2.1.4.min.js"></script>
      <script src="~/Scripts/bootstrap.min.js"></script>
+     <script>
+function myFunction() {
+    document.getElementById("myDate").value = "2014-02-09";
+}
+</script>
     <script>
         function checkId() {
             var name = $('#uId').val();
